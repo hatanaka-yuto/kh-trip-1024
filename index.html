@@ -77,6 +77,9 @@ h1{margin-top:10px;font-family:var(--serif);font-weight:800;font-size:clamp(34px
 .places li:last-child{border-bottom:0}
 .places .name{font-size:16px;font-weight:700;line-height:1.6}
 .maps{margin-top:14px}
+.done{margin-top:16px}
+.done>summary{display:flex;align-items:center;min-height:48px;padding:0 4px;cursor:pointer;font-size:15px;font-weight:700;color:var(--sage)}
+.done[open]>summary{color:var(--cream)}
 .maps summary{display:flex;align-items:center;min-height:44px;cursor:pointer;font-size:14px;font-weight:700;color:var(--rust)}
 .route-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:12px}
 .route-point h3{font-size:15px;margin:0 0 6px}
@@ -582,21 +585,32 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <h2 class="part part-lead">ポーカー</h2>
 <p class="meta">10月24日（土）の夜・7人・鍋をはさんで2部制</p>
 <nav class="toc" aria-label="ポーカーのページ内の移動">
-<a href="#p-timer">タイマー</a>
-<a href="#p-tournament">前半：トーナメント</a>
-<a href="#p-blinds">ブラインド表</a>
 <a href="#p-ring">後半：リングゲーム</a>
+<a href="#p-first">前半（終了）</a>
 </nav>
 
 <div class="band">
 <div class="band-times">
-<div><p class="k">前半 トーナメント</p><p class="t">17:30</p></div>
 <div><p class="k">後半 リングゲーム</p><p class="t">21:00</p></div>
+<div><p class="k">ベッド決め</p><p class="t">0:15</p></div>
 </div>
-<p class="place">前半はトーナメント、鍋のあとはいつものリング</p>
-<p class="band-note">前半は19:30ごろに決着する想定。飛んだ人から鍋の支度を始めて、決着したらすぐ食べる。</p>
+<p class="place">鍋のあとは、いつものリング</p>
+<p class="band-note">前半のトーナメントは終了。タイマー・ルール・ブラインド表は、下の「前半（終了）」を開くと見られる。</p>
 </div>
 
+<section class="panel" id="p-ring" aria-labelledby="h-p-ring">
+<h3 class="title" id="h-p-ring">後半：リングゲーム</h3>
+<dl class="rows">
+<div class="row"><dt>開始</dt><dd>21:00ごろ。鍋の片付けが終わったら</dd></div>
+<div class="row"><dt>持ち点</dt><dd>1人 400点<span class="sub">黒×2、緑×4、青×4、赤×10、白×10</span></dd></div>
+<div class="row"><dt>ブラインド</dt><dd>いつもどおり</dd></div>
+<div class="row"><dt>ベッド</dt><dd><span class="badge">0:15</span>その時点で持ち点が多い人から順に、寝る場所を選ぶ</dd></div>
+<div class="row"><dt>終わり</dt><dd>決めない。寝たい人から抜ける</dd></div>
+</dl>
+</section>
+
+<details class="done" id="p-first">
+<summary>前半：トーナメント（終了）— タイマー・ルール・ブラインド表</summary>
 <section class="panel" id="p-timer" aria-labelledby="h-p-timer">
 <h3 class="title" id="h-p-timer">ブラインドタイマー</h3>
 <p class="fine tm-nojs">タイマーは、JavaScriptが動くブラウザで使えます。</p>
@@ -660,17 +674,7 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 </table>
 <p class="fine">レベル1〜10は12分、色のついたレベル11以降は6分。全員の点を合わせても2,100点なので、レベル8〜10のあたりで決着する計算。</p>
 </section>
-
-<section class="panel" id="p-ring" aria-labelledby="h-p-ring">
-<h3 class="title" id="h-p-ring">後半：リングゲーム</h3>
-<dl class="rows">
-<div class="row"><dt>開始</dt><dd>21:00ごろ。鍋の片付けが終わったら</dd></div>
-<div class="row"><dt>持ち点</dt><dd>1人 400点<span class="sub">黒×2、緑×4、青×4、赤×10、白×10</span></dd></div>
-<div class="row"><dt>ブラインド</dt><dd>いつもどおり</dd></div>
-<div class="row"><dt>ベッド</dt><dd><span class="badge">0:15</span>その時点で持ち点が多い人から順に、寝る場所を選ぶ</dd></div>
-<div class="row"><dt>終わり</dt><dd>決めない。寝たい人から抜ける</dd></div>
-</dl>
-</section>
+</details>
 </div>
 </main>
 
@@ -715,6 +719,7 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
     const id = decodeURIComponent(location.hash.slice(1));
     let i = keys.indexOf(id);
     const el = i < 0 && id ? document.getElementById(id) : null;
+    for (let d = el && el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
     if (i < 0) i = Math.max(0, panels.findIndex(p => el && p.contains(el)));
     const changed = show(i);
     if (!el) toTop(i);
