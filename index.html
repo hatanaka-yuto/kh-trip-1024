@@ -24,6 +24,13 @@ a:focus-visible{outline:2px solid var(--peach);outline-offset:3px;border-radius:
 .wrap{max-width:720px;margin:0 auto;padding:28px 16px 104px}
 
 /* header */
+/* cover photo */
+.cover-figure{position:relative;margin:22px 0 0;overflow:hidden;border-radius:16px;background:#193b37;box-shadow:0 12px 28px rgba(0,0,0,.16)}
+.cover-figure img{display:block;width:100%;height:auto}
+.cover-figure figcaption{position:absolute;right:0;bottom:0;left:0;display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:32px 18px 14px;background:linear-gradient(transparent,rgba(12,31,29,.75));color:var(--cream);font-size:13px;font-weight:700;letter-spacing:.07em;text-shadow:0 1px 4px rgba(0,0,0,.35)}
+.cover-figure figcaption small{font-family:var(--serif);font-size:12px;color:var(--peach-soft);white-space:nowrap}
+@media (max-width:359px){.cover-figure figcaption{flex-wrap:wrap;gap:0 12px;padding:24px 12px 9px;font-size:12px}}
+
 .updated{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--peach)}
 .updated svg{width:18px;height:18px;flex-shrink:0}
 h1{margin-top:10px;font-family:var(--serif);font-weight:800;font-size:clamp(34px,9vw,52px);line-height:1.2;letter-spacing:.01em}
@@ -192,6 +199,10 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <h1>黒保根ポーカー合宿</h1>
 <p class="dates">10月24日（土）— 25日（日）</p>
 <p class="meta">群馬県桐生市・ログハウス貸切　7人　1泊2日</p>
+<figure class="cover-figure">
+<img src="images/rafting-hero.webp" alt="秋の渓谷で、青いラフティングボートに乗ってパドルを掲げる仲間たち" width="1024" height="768" loading="eager" decoding="async" fetchpriority="high">
+<figcaption><span>MINAKAMI RAFTING</span><small>2026.10.24</small></figcaption>
+</figure>
 </header>
 
 <div class="tabs" role="tablist" aria-label="表示するページ" hidden>
