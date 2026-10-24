@@ -178,6 +178,24 @@ h1{margin-top:10px;font-family:var(--serif);font-weight:800;font-size:clamp(34px
 .blinds th:last-child,.blinds td:last-child{text-align:right;white-space:nowrap}
 .blinds tr.turbo td{background:rgba(154,79,31,.08)}
 
+/* blind timer */
+.tm-head{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;font-size:14px;font-weight:700;color:var(--rust)}
+.tm-status{color:var(--muted)} .tm-status.on{color:var(--badge)}
+.tm-blinds{font-family:var(--serif);font-weight:800;font-size:clamp(26px,7vw,34px);line-height:1.2}
+.tm-time{margin-top:6px;font-family:var(--serif);font-weight:800;font-size:clamp(64px,22vw,104px);line-height:1;letter-spacing:.02em;font-variant-numeric:tabular-nums;text-align:center}
+.tm-time.warn{color:var(--rust)}
+.tm-bar{height:8px;margin-top:10px;border-radius:999px;background:rgba(23,59,47,.12);overflow:hidden}
+.tm-bar i{display:block;height:100%;width:0;background:var(--rust);transition:width .25s linear}
+.tm-next{margin-top:8px;font-size:14px;color:var(--muted)}
+.tbtn{min-height:48px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--cream);color:var(--green);font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+.tbtn:hover{background:var(--tint)}
+.tbtn:disabled{opacity:.45;cursor:default}
+.tbtn:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+.tbtn.primary{display:block;width:100%;margin-top:14px;min-height:56px;font-size:18px;background:var(--peach);border-color:var(--peach)}
+.tbtn.primary:hover{background:var(--peach-soft)}
+.tm-grid{margin-top:10px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.blinds tr.now td{background:rgba(44,90,76,.14)} .blinds tr.now td:first-child{box-shadow:inset 3px 0 0 var(--badge)}
+
 /* fixed button: open Walica from anywhere */
 .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:20;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;border-radius:999px;background:var(--peach);color:var(--green);font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .fab:hover{background:var(--peach-soft);color:var(--green)}
@@ -198,6 +216,7 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
   .row dt{font-size:15px}
   .leaders{grid-template-columns:repeat(2,minmax(0,1fr))}
   .band{padding:24px 28px}
+  .tm-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 </style>
 </head>
@@ -562,6 +581,7 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <h2 class="part part-lead">ポーカー</h2>
 <p class="meta">10月24日（土）の夜・7人・鍋をはさんで2部制</p>
 <nav class="toc" aria-label="ポーカーのページ内の移動">
+<a href="#p-timer">タイマー</a>
 <a href="#p-tournament">前半：トーナメント</a>
 <a href="#p-blinds">ブラインド表</a>
 <a href="#p-ring">後半：リングゲーム</a>
@@ -576,12 +596,36 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <p class="band-note">前半は19:30ごろに決着する想定。飛んだ人から鍋の支度を始めて、決着したらすぐ食べる。</p>
 </div>
 
+<section class="panel" id="p-timer" aria-labelledby="h-p-timer">
+<h3 class="title" id="h-p-timer">ブラインドタイマー</h3>
+<p class="fine tm-nojs">タイマーは、JavaScriptが動くブラウザで使えます。</p>
+<div class="tm" hidden>
+<div class="tm-head"><span class="tm-lv">レベル 1</span><span class="tm-status">停止中</span></div>
+<p class="tm-blinds">50 / 100</p>
+<p class="tm-time" role="timer">12:00</p>
+<div class="tm-bar" aria-hidden="true"><i></i></div>
+<p class="tm-next">次：75 / 150（12分）</p>
+<button type="button" class="tbtn primary tm-start">スタート</button>
+<div class="tm-grid">
+<button type="button" class="tbtn tm-minus">−1分</button>
+<button type="button" class="tbtn tm-plus">＋1分</button>
+<button type="button" class="tbtn tm-prev">前のレベル</button>
+<button type="button" class="tbtn tm-nextlv">次のレベル</button>
+<button type="button" class="tbtn tm-undo" disabled>元に戻す</button>
+<button type="button" class="tbtn tm-reset">最初から</button>
+<button type="button" class="tbtn tm-sound" aria-pressed="true">音：オン</button>
+<button type="button" class="tbtn tm-test">音テスト</button>
+</div>
+<p class="fine">1台のスマホで動かす。画面が消えても、再読み込みしても、別のタブを見ていても止まらない。押し間違えたら「元に戻す」で1つ前の状態に戻る（もう一度押すと戻す前に戻る）。残り1分で短い音、レベルが変わると長めの音。最初に「音テスト」で鳴るか確かめる。</p>
+</div>
+</section>
+
 <section class="panel" id="p-tournament" aria-labelledby="h-p-tournament">
 <h3 class="title" id="h-p-tournament">前半：トーナメントのルール</h3>
 <dl class="rows">
 <div class="row"><dt>形式</dt><dd>ノーリミット・テキサスホールデム。7人で1テーブル、優勝が決まるまで</dd></div>
 <div class="row"><dt>持ち点</dt><dd>1人 10,000点（最初のビッグブラインドの100倍）<span class="sub">分け方の例：1,000点×6、500点×6、100点×8、25点×8。チップのセットに合わせて調整</span></dd></div>
-<div class="row"><dt>ブラインド</dt><dd>12分ごとに上がる（<a href="#p-blinds">表</a>）。アンティはなし<span class="sub">タイマーはスマホで12分の繰り返し。係はあつき（チップ担当）</span></dd></div>
+<div class="row"><dt>ブラインド</dt><dd>12分ごとに上がる（<a href="#p-blinds">表</a>）。アンティはなし<span class="sub">このページの<a href="#p-timer">ブラインドタイマー</a>を1台のスマホで動かす。係はあつき（チップ担当）</span></dd></div>
 <div class="row"><dt>25点チップ</dt><dd>レベル4（150/300）が終わったら100点に両替する。端数は切り上げ</dd></div>
 <div class="row"><dt>リバイ</dt><dd>なし。飛んだら終わり</dd></div>
 <div class="row"><dt>順位</dt><dd>飛んだ順。同じハンドで2人以上飛んだら、そのハンドの前に多く持っていた人が上</dd></div>
@@ -597,19 +641,19 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <table class="blinds">
 <thead><tr><th>Lv</th><th>SB / BB</th><th>開始</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>50 / 100</td><td>17:30</td></tr>
-<tr><td>2</td><td>75 / 150</td><td>17:42</td></tr>
-<tr><td>3</td><td>100 / 200</td><td>17:54</td></tr>
-<tr><td>4</td><td>150 / 300</td><td>18:06</td></tr>
-<tr><td>5</td><td>200 / 400</td><td>18:18</td></tr>
-<tr><td>6</td><td>300 / 600</td><td>18:30</td></tr>
-<tr><td>7</td><td>400 / 800</td><td>18:42</td></tr>
-<tr><td>8</td><td>600 / 1,200</td><td>18:54</td></tr>
-<tr><td>9</td><td>800 / 1,600</td><td>19:06</td></tr>
-<tr><td>10</td><td>1,000 / 2,000</td><td>19:18</td></tr>
-<tr class="turbo"><td>11</td><td>1,500 / 3,000</td><td>19:30</td></tr>
-<tr class="turbo"><td>12</td><td>2,000 / 4,000</td><td>19:36</td></tr>
-<tr class="turbo"><td>13</td><td>3,000 / 6,000</td><td>19:42</td></tr>
+<tr data-min="12"><td>1</td><td>50 / 100</td><td>17:30</td></tr>
+<tr data-min="12"><td>2</td><td>75 / 150</td><td>17:42</td></tr>
+<tr data-min="12"><td>3</td><td>100 / 200</td><td>17:54</td></tr>
+<tr data-min="12"><td>4</td><td>150 / 300</td><td>18:06</td></tr>
+<tr data-min="12"><td>5</td><td>200 / 400</td><td>18:18</td></tr>
+<tr data-min="12"><td>6</td><td>300 / 600</td><td>18:30</td></tr>
+<tr data-min="12"><td>7</td><td>400 / 800</td><td>18:42</td></tr>
+<tr data-min="12"><td>8</td><td>600 / 1,200</td><td>18:54</td></tr>
+<tr data-min="12"><td>9</td><td>800 / 1,600</td><td>19:06</td></tr>
+<tr data-min="12"><td>10</td><td>1,000 / 2,000</td><td>19:18</td></tr>
+<tr class="turbo" data-min="6"><td>11</td><td>1,500 / 3,000</td><td>19:30</td></tr>
+<tr class="turbo" data-min="6"><td>12</td><td>2,000 / 4,000</td><td>19:36</td></tr>
+<tr class="turbo" data-min="6"><td>13</td><td>3,000 / 6,000</td><td>19:42</td></tr>
 </tbody>
 </table>
 <p class="fine">レベル1〜10は12分、色のついたレベル11以降は6分。全員の点を合わせても70,000点なので、レベル10〜12のあたりで決着する計算。</p>
@@ -693,6 +737,128 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
   root.style.scrollPaddingTop = tablist.offsetHeight + 12 + 'px';
   addEventListener('hashchange', route);
   route();
+})();
+</script>
+<script>
+// Blind timer for the poker tab. The state keeps the level's absolute end time, so a reload,
+// a sleeping phone or another tab never resets it; levels that ended meanwhile are caught up.
+(() => {
+  const panel = document.getElementById('p-timer');
+  const rows = [...document.querySelectorAll('.blinds tbody tr')];
+  if (!panel || !rows.length) return;
+  const levels = rows.map(r => ({ lv: r.children[0].textContent.trim(), blinds: r.children[1].textContent.trim(), ms: Number(r.dataset.min) * 60000 }));
+  const KEY = 'kh-poker-timer-v1';
+  const $ = sel => panel.querySelector(sel);
+  const ui = { box: $('.tm'), nojs: $('.tm-nojs'), lv: $('.tm-lv'), status: $('.tm-status'), blinds: $('.tm-blinds'), time: $('.tm-time'), bar: $('.tm-bar i'), next: $('.tm-next'), start: $('.tm-start'), undo: $('.tm-undo'), sound: $('.tm-sound') };
+
+  const fresh = () => ({ i: 0, running: false, endsAt: 0, left: levels[0].ms, sound: true, warned: false, started: false });
+  const load = () => { try { const v = JSON.parse(localStorage.getItem(KEY)); if (v && Number.isInteger(v.i) && v.i >= 0 && v.i < levels.length) return Object.assign(fresh(), v); } catch (e) {} return null; };
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+  let st = load() || fresh();
+  let undo = null;
+
+  // Sounds are short WAV files built right here: nothing to download, nothing that can be blocked.
+  function wavUrl(tones) {
+    const sr = 22050, gap = Math.round(sr * 0.08);
+    const parts = tones.map(t => [t[0], Math.round(sr * t[1])]);
+    const n = parts.reduce((a, t) => a + t[1] + gap, 0);
+    const buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+    const str = (o, x) => { for (let k = 0; k < x.length; k++) v.setUint8(o + k, x.charCodeAt(k)); };
+    str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVE'); str(12, 'fmt '); v.setUint32(16, 16, true);
+    v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true);
+    v.setUint16(32, 2, true); v.setUint16(34, 16, true); str(36, 'data'); v.setUint32(40, n * 2, true);
+    let i = 0;
+    for (const [f, len] of parts) {
+      for (let k = 0; k < len; k++, i++) {
+        const t = k / sr, env = Math.min(1, t / 0.01, (len / sr - t) / 0.06);
+        v.setInt16(44 + i * 2, Math.sin(2 * Math.PI * f * t) * env * 0.7 * 32767, true);
+      }
+      i += gap;
+    }
+    return URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+  }
+  const chime = new Audio(wavUrl([[880, 0.3], [1175, 0.3], [1568, 0.5]]));
+  const beep = new Audio(wavUrl([[988, 0.25]]));
+  // iPhone only lets a page play sound after a tap: every button taps the sounds awake.
+  const unlock = () => [chime, beep].forEach(a => a.play().then(() => { a.pause(); a.currentTime = 0; }).catch(() => {}));
+  const buzz = pattern => { if (navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) navigator.vibrate(pattern); };
+  const play = (a, pattern) => { if (!st.sound) return; a.currentTime = 0; a.play().catch(() => {}); buzz(pattern); };
+
+  // Keep the screen on while running, where the phone allows it.
+  let lock = null;
+  async function awake(on) {
+    try {
+      if (on && !lock && navigator.wakeLock) { lock = await navigator.wakeLock.request('screen'); lock.addEventListener('release', () => { lock = null; }); }
+      else if (!on && lock) { await lock.release(); lock = null; }
+    } catch (e) {}
+  }
+
+  const left = () => st.running ? st.endsAt - Date.now() : st.left;
+  const mmss = ms => { const sec = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'); };
+  const clock = ms => { const d = new Date(ms); return d.getHours() + ':' + String(d.getMinutes()).padStart(2, '0'); };
+
+  function render() {
+    const L = levels[st.i], last = st.i === levels.length - 1, ms = left();
+    ui.lv.textContent = 'レベル ' + L.lv + (last ? '（最終）' : '');
+    ui.blinds.textContent = L.blinds;
+    ui.time.textContent = mmss(ms);
+    ui.time.classList.toggle('warn', ms <= 60000);
+    ui.bar.style.width = Math.min(100, Math.max(0, 100 - ms / L.ms * 100)) + '%';
+    ui.next.textContent = last ? 'このブラインドのまま、同じ時間で繰り返す'
+      : '次：' + levels[st.i + 1].blinds + '（' + levels[st.i + 1].ms / 60000 + '分）' + (st.running ? '　' + clock(st.endsAt) + ' から' : '');
+    ui.status.textContent = st.running ? '動作中' : (st.started ? '一時停止' : '停止中');
+    ui.status.classList.toggle('on', st.running);
+    ui.start.textContent = st.running ? '一時停止' : (st.started ? '再開' : 'スタート');
+    ui.sound.textContent = st.sound ? '音：オン' : '音：オフ';
+    ui.sound.setAttribute('aria-pressed', st.sound);
+    rows.forEach((r, k) => r.classList.toggle('now', k === st.i));
+  }
+
+  // Move past every level that has ended (also the ones that ended while the phone slept), then draw.
+  function tick() {
+    let passed = 0;
+    while (st.running && st.endsAt - Date.now() <= 0) {
+      if (st.i < levels.length - 1) st.i++;
+      st.endsAt += levels[st.i].ms;
+      st.warned = false; passed++;
+    }
+    if (passed) { play(chime, [300, 120, 300, 120, 300]); undo = null; ui.undo.disabled = true; save(); }
+    else if (st.running && !st.warned && st.endsAt - Date.now() <= 60000) { st.warned = true; play(beep, [200]); save(); }
+    render();
+  }
+
+  const remember = () => { undo = JSON.stringify(st); ui.undo.disabled = false; };
+  const act = (fn, noUndo) => { if (!noUndo) remember(); fn(); save(); render(); };
+  const setLeft = ms => { ms = Math.max(1000, ms); if (st.running) st.endsAt = Date.now() + ms; else st.left = ms; };
+  const goto = i => { st.i = Math.min(levels.length - 1, Math.max(0, i)); st.warned = false; setLeft(levels[st.i].ms); };
+
+  ui.start.addEventListener('click', () => { unlock(); act(() => {
+    if (st.running) { st.left = left(); st.running = false; awake(false); }
+    else { st.endsAt = Date.now() + st.left; st.running = true; st.started = true; awake(true); }
+  }, true); });
+  $('.tm-minus').addEventListener('click', () => { unlock(); act(() => setLeft(left() - 60000)); });
+  $('.tm-plus').addEventListener('click', () => { unlock(); act(() => setLeft(left() + 60000)); });
+  $('.tm-prev').addEventListener('click', () => { unlock(); act(() => goto(st.i - 1)); });
+  $('.tm-nextlv').addEventListener('click', () => { unlock(); act(() => goto(st.i + 1)); });
+  $('.tm-reset').addEventListener('click', () => {
+    unlock();
+    if (!confirm('タイマーをレベル1の最初に戻しますか？\n（「元に戻す」で取り消せます）')) return;
+    act(() => { st = Object.assign(fresh(), { sound: st.sound }); awake(false); });
+  });
+  ui.undo.addEventListener('click', () => {
+    if (!undo) return;
+    const now = JSON.stringify(st);
+    st = Object.assign(fresh(), JSON.parse(undo)); undo = now;
+    awake(st.running); save(); render();
+  });
+  ui.sound.addEventListener('click', () => { unlock(); act(() => { st.sound = !st.sound; }, true); });
+  $('.tm-test').addEventListener('click', () => { chime.currentTime = 0; chime.play().catch(() => {}); buzz([300, 120, 300]); });
+
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { tick(); if (st.running) awake(true); } });
+  ui.nojs.hidden = true; ui.box.hidden = false;
+  if (st.running) awake(true);
+  tick();
+  setInterval(tick, 250);
 })();
 </script>
 </body>
