@@ -601,10 +601,10 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <p class="fine tm-nojs">タイマーは、JavaScriptが動くブラウザで使えます。</p>
 <div class="tm" hidden>
 <div class="tm-head"><span class="tm-lv">レベル 1</span><span class="tm-status">停止中</span></div>
-<p class="tm-blinds">50 / 100</p>
+<p class="tm-blinds">1 / 2</p>
 <p class="tm-time" role="timer">12:00</p>
 <div class="tm-bar" aria-hidden="true"><i></i></div>
-<p class="tm-next">次：75 / 150（12分）</p>
+<p class="tm-next">次：2 / 4（12分）</p>
 <button type="button" class="tbtn primary tm-start">スタート</button>
 <div class="tm-grid">
 <button type="button" class="tbtn tm-minus">−1分</button>
@@ -624,9 +624,10 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <h3 class="title" id="h-p-tournament">前半：トーナメントのルール</h3>
 <dl class="rows">
 <div class="row"><dt>形式</dt><dd>ノーリミット・テキサスホールデム。7人で1テーブル、優勝が決まるまで</dd></div>
-<div class="row"><dt>持ち点</dt><dd>1人 10,000点（最初のビッグブラインドの100倍）<span class="sub">分け方の例：1,000点×6、500点×6、100点×8、25点×8。チップのセットに合わせて調整</span></dd></div>
+<div class="row"><dt>チップ</dt><dd>白 1点・赤 5点・青 10点・緑 25点・黒 100点</dd></div>
+<div class="row"><dt>持ち点</dt><dd>1人 200点（最初のBBの100倍）<span class="sub">白×10、赤×6、青×6、緑×4で200点。色が足りなければ、合計200点になるように別の色で</span></dd></div>
 <div class="row"><dt>ブラインド</dt><dd>12分ごとに上がる（<a href="#p-blinds">表</a>）。アンティはなし<span class="sub">このページの<a href="#p-timer">ブラインドタイマー</a>を1台のスマホで動かす。係はあつき（チップ担当）</span></dd></div>
-<div class="row"><dt>25点チップ</dt><dd>レベル4（150/300）が終わったら100点に両替する。端数は切り上げ</dd></div>
+<div class="row"><dt>白チップ</dt><dd>レベル4（5/10）が終わったら赤に両替する。白が1〜4枚残っていたら赤1枚に（切り上げ）</dd></div>
 <div class="row"><dt>リバイ</dt><dd>なし。飛んだら終わり</dd></div>
 <div class="row"><dt>順位</dt><dd>飛んだ順。同じハンドで2人以上飛んだら、そのハンドの前に多く持っていた人が上</dd></div>
 <div class="row"><dt>飛んだ人</dt><dd>鍋の支度へ。コンロ2台を出して、つゆを火にかける（<a href="#s-cook">手順</a>）。決着と同時にごはんにできる</dd></div>
@@ -641,22 +642,22 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <table class="blinds">
 <thead><tr><th>Lv</th><th>SB / BB</th><th>開始</th></tr></thead>
 <tbody>
-<tr data-min="12"><td>1</td><td>50 / 100</td><td>17:30</td></tr>
-<tr data-min="12"><td>2</td><td>75 / 150</td><td>17:42</td></tr>
-<tr data-min="12"><td>3</td><td>100 / 200</td><td>17:54</td></tr>
-<tr data-min="12"><td>4</td><td>150 / 300</td><td>18:06</td></tr>
-<tr data-min="12"><td>5</td><td>200 / 400</td><td>18:18</td></tr>
-<tr data-min="12"><td>6</td><td>300 / 600</td><td>18:30</td></tr>
-<tr data-min="12"><td>7</td><td>400 / 800</td><td>18:42</td></tr>
-<tr data-min="12"><td>8</td><td>600 / 1,200</td><td>18:54</td></tr>
-<tr data-min="12"><td>9</td><td>800 / 1,600</td><td>19:06</td></tr>
-<tr data-min="12"><td>10</td><td>1,000 / 2,000</td><td>19:18</td></tr>
-<tr class="turbo" data-min="6"><td>11</td><td>1,500 / 3,000</td><td>19:30</td></tr>
-<tr class="turbo" data-min="6"><td>12</td><td>2,000 / 4,000</td><td>19:36</td></tr>
-<tr class="turbo" data-min="6"><td>13</td><td>3,000 / 6,000</td><td>19:42</td></tr>
+<tr data-min="12"><td>1</td><td>1 / 2</td><td>17:30</td></tr>
+<tr data-min="12"><td>2</td><td>2 / 4</td><td>17:42</td></tr>
+<tr data-min="12"><td>3</td><td>3 / 6</td><td>17:54</td></tr>
+<tr data-min="12"><td>4</td><td>5 / 10</td><td>18:06</td></tr>
+<tr data-min="12"><td>5</td><td>10 / 20</td><td>18:18</td></tr>
+<tr data-min="12"><td>6</td><td>15 / 30</td><td>18:30</td></tr>
+<tr data-min="12"><td>7</td><td>20 / 40</td><td>18:42</td></tr>
+<tr data-min="12"><td>8</td><td>30 / 60</td><td>18:54</td></tr>
+<tr data-min="12"><td>9</td><td>50 / 100</td><td>19:06</td></tr>
+<tr data-min="12"><td>10</td><td>75 / 150</td><td>19:18</td></tr>
+<tr class="turbo" data-min="6"><td>11</td><td>100 / 200</td><td>19:30</td></tr>
+<tr class="turbo" data-min="6"><td>12</td><td>150 / 300</td><td>19:36</td></tr>
+<tr class="turbo" data-min="6"><td>13</td><td>200 / 400</td><td>19:42</td></tr>
 </tbody>
 </table>
-<p class="fine">レベル1〜10は12分、色のついたレベル11以降は6分。全員の点を合わせても70,000点なので、レベル10〜12のあたりで決着する計算。</p>
+<p class="fine">レベル1〜10は12分、色のついたレベル11以降は6分。全員の点を合わせても1,400点なので、レベル7〜9のあたりで決着する計算。</p>
 </section>
 
 <section class="panel" id="p-ring" aria-labelledby="h-p-ring">
