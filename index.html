@@ -41,7 +41,7 @@ h1{margin-top:10px;font-family:var(--serif);font-weight:800;font-size:clamp(34px
 .toc a:hover{background:rgba(248,248,244,.08)}
 
 /* tabs */
-.tabs{position:sticky;top:0;z-index:10;margin:22px -16px 0;padding:10px 16px;display:flex;gap:8px;background:var(--green);border-bottom:1px solid rgba(248,248,244,.15)}
+.tabs{position:sticky;top:0;z-index:10;margin:22px -16px 0;padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px;background:var(--green);border-bottom:1px solid rgba(248,248,244,.15)}
 .tab{flex:1 1 auto;min-height:44px;padding:0 8px;white-space:nowrap;border:1px solid rgba(248,248,244,.3);border-radius:10px;background:transparent;color:var(--cream);font:inherit;font-size:15px;font-weight:700;cursor:pointer}
 .tab:hover{background:rgba(248,248,244,.08)}
 .tab[aria-selected="true"]{background:var(--cream);border-color:var(--cream);color:var(--green)}
@@ -168,6 +168,16 @@ h1{margin-top:10px;font-family:var(--serif);font-weight:800;font-size:clamp(34px
 
 .fine{margin-top:14px;font-size:14px;line-height:1.7;color:var(--muted)}
 
+/* blind table */
+.blinds{width:100%;margin-top:12px;border-collapse:collapse;font-size:15px}
+.blinds th{padding:6px 0;text-align:left;font-size:13px;font-weight:700;color:var(--rust);border-bottom:2px solid var(--line)}
+.blinds td{padding:8px 0;border-bottom:1px solid rgba(23,59,47,.12);font-weight:700}
+.blinds tbody tr:last-child td{border-bottom:0}
+.blinds th:first-child,.blinds td:first-child{width:3em}
+.blinds td:nth-child(2){font-family:var(--serif);font-weight:800;font-size:17px}
+.blinds th:last-child,.blinds td:last-child{text-align:right;white-space:nowrap}
+.blinds tr.turbo td{background:rgba(154,79,31,.08)}
+
 /* fixed button: open Walica from anywhere */
 .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:20;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;border-radius:999px;background:var(--peach);color:var(--green);font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.3)}
 .fab:hover{background:var(--peach-soft);color:var(--green)}
@@ -177,7 +187,7 @@ h1{margin-top:10px;font-family:var(--serif);font-weight:800;font-size:clamp(34px
 footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-wrap:balance}
 
 @media (max-width:359px){
-  .tab{padding:0 6px;font-size:14px}
+  .tab{padding:0 5px;font-size:13px}
 }
 
 @media (min-width:600px){
@@ -206,9 +216,10 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 </header>
 
 <div class="tabs" role="tablist" aria-label="表示するページ" hidden>
-<button type="button" class="tab" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">全体の予定</button>
+<button type="button" class="tab" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">予定</button>
 <button type="button" class="tab" role="tab" id="tab-rafting" aria-controls="panel-rafting" aria-selected="false" tabindex="-1">ラフティング</button>
 <button type="button" class="tab" role="tab" id="tab-shopping" aria-controls="panel-shopping" aria-selected="false" tabindex="-1">買い出し</button>
+<button type="button" class="tab" role="tab" id="tab-poker" aria-controls="panel-poker" aria-selected="false" tabindex="-1">ポーカー</button>
 </div>
 
 <main>
@@ -244,9 +255,10 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 <li><span class="at">14:35–15:20</span><span><span class="activity">買い出し</span><span class="hint">鍋と水餃子の材料。昼ごはん代わりの軽食と飲み物は各自で　<a href="#shopping">買い物リスト</a></span></span></li>
 <li><span class="at">15:20–16:30</span><span><span class="activity">宿へ移動</span><span class="hint">約70分</span></span></li>
 <li><span class="at">16:30</span><span><span class="activity">ログベース黒保根の丘に到着・荷物整理</span></span></li>
-<li><span class="at">17:00–18:30</span><span><span class="activity">鍋と水餃子の準備</span><span class="hint"><a href="#s-cook">調理の手順と分担</a></span></span></li>
-<li><span class="at">18:30–20:00</span><span><span class="activity">夕食</span><span class="hint">片付けもみんなで</span></span></li>
-<li><span class="at">20:00〜</span><span><span class="activity">ポーカー</span></span></li>
+<li><span class="at">16:45–17:25</span><span><span class="activity">餃子を包む・野菜を切る</span><span class="hint">全員で。包んだ餃子は冷蔵庫へ　<a href="#s-cook">調理の手順と分担</a></span></span></li>
+<li><span class="at">17:30–19:30</span><span><span class="activity">ポーカー前半：トーナメント</span><span class="hint">12分ごとにブラインドが上がる。飛んだ人から鍋の支度　<a href="#poker">ポーカーのタブ</a></span></span></li>
+<li><span class="at">19:30–20:45</span><span><span class="activity">晩ごはん（鍋と水餃子）</span><span class="hint">片付けもみんなで</span></span></li>
+<li><span class="at">21:00〜</span><span><span class="activity">ポーカー後半：リングゲーム</span><span class="hint">いつもどおり</span></span></li>
 </ol>
 <p class="fine">移動時間は目安。道路状況に合わせて、当日ナビで確認する。</p>
 </section>
@@ -525,20 +537,91 @@ footer{margin-top:36px;font-size:13px;color:var(--sage);text-align:center;text-w
 
 <section class="panel" id="s-cook" aria-labelledby="h-s-cook">
 <h3 class="title" id="h-s-cook">当日の調理と分担</h3>
+<p class="fine">餃子はポーカー前半の前に包んでおき、鍋は前半が終わってから火にかける。</p>
 <ol class="steps">
-<li><p class="step-head">下ごしらえ<span class="pill">約20分</span></p>
+<li><p class="step-head">下ごしらえ<span class="pill">16:45〜・約20分</span></p>
 <dl class="team">
 <div><dt>チームA</dt><dd>野菜・こんにゃくをカット（ザルに仕分け）</dd></div>
 <div><dt>チームB</dt><dd>餃子のタネ作り（<a href="#s-gyoza">上の手順</a>）</dd></div>
 </dl></li>
-<li><p class="step-head">包み＆火かけ<span class="pill">約15分</span></p>
+<li><p class="step-head">包む<span class="pill">約15分</span></p>
 <dl class="team">
-<div><dt>全員</dt><dd>手分けして一気に餃子を包む</dd></div>
-<div><dt>担当</dt><dd>コンロ2台をセッティング。鍋つゆと下仁田ネギ・白菜の芯・こんにゃくを入れて火にかける</dd></div>
+<div><dt>全員</dt><dd>手分けして一気に餃子を包む。片栗粉を薄くまぶしたバットに並べて、ポーカーのあいだは冷蔵庫へ</dd></div>
 </dl></li>
-<li><p class="step-head">鍋スタート</p><p class="step-body">沸騰したら肉・野菜・水餃子を投入！水餃子が浮いてツルッとしたら食べ頃！</p></li>
+<li><p class="step-head">鍋スタート<span class="pill">19:30ごろ</span></p>
+<dl class="team">
+<div><dt>飛んだ人</dt><dd>コンロ2台をセッティング。鍋つゆと下仁田ネギ・白菜の芯・こんにゃくを入れて火にかける</dd></div>
+<div><dt>全員</dt><dd>沸騰したら肉・野菜・水餃子を投入！水餃子が浮いてツルッとしたら食べ頃！</dd></div>
+</dl></li>
 <li><p class="step-head">シメ</p><p class="step-body">最後は「おっきりこみ（幅広生麺）」をスープに入れて、極太モチモチ麺で締め！</p></li>
 </ol>
+</section>
+</div>
+
+<div class="tabpanel" id="panel-poker" role="tabpanel" aria-labelledby="tab-poker">
+<h2 class="part part-lead">ポーカー</h2>
+<p class="meta">10月24日（土）の夜・7人・鍋をはさんで2部制</p>
+<nav class="toc" aria-label="ポーカーのページ内の移動">
+<a href="#p-tournament">前半：トーナメント</a>
+<a href="#p-blinds">ブラインド表</a>
+<a href="#p-ring">後半：リングゲーム</a>
+</nav>
+
+<div class="band">
+<div class="band-times">
+<div><p class="k">前半 トーナメント</p><p class="t">17:30</p></div>
+<div><p class="k">後半 リングゲーム</p><p class="t">21:00</p></div>
+</div>
+<p class="place">前半はトーナメント、鍋のあとはいつものリング</p>
+<p class="band-note">前半は19:30ごろに決着する想定。飛んだ人から鍋の支度を始めて、決着したらすぐ食べる。</p>
+</div>
+
+<section class="panel" id="p-tournament" aria-labelledby="h-p-tournament">
+<h3 class="title" id="h-p-tournament">前半：トーナメントのルール</h3>
+<dl class="rows">
+<div class="row"><dt>形式</dt><dd>ノーリミット・テキサスホールデム。7人で1テーブル、優勝が決まるまで</dd></div>
+<div class="row"><dt>持ち点</dt><dd>1人 10,000点（最初のビッグブラインドの100倍）<span class="sub">分け方の例：1,000点×6、500点×6、100点×8、25点×8。チップのセットに合わせて調整</span></dd></div>
+<div class="row"><dt>ブラインド</dt><dd>12分ごとに上がる（<a href="#p-blinds">表</a>）。アンティはなし<span class="sub">タイマーはスマホで12分の繰り返し。係はあつき（チップ担当）</span></dd></div>
+<div class="row"><dt>25点チップ</dt><dd>レベル4（150/300）が終わったら100点に両替する。端数は切り上げ</dd></div>
+<div class="row"><dt>リバイ</dt><dd>なし。飛んだら終わり</dd></div>
+<div class="row"><dt>順位</dt><dd>飛んだ順。同じハンドで2人以上飛んだら、そのハンドの前に多く持っていた人が上</dd></div>
+<div class="row"><dt>飛んだ人</dt><dd>鍋の支度へ。コンロ2台を出して、つゆを火にかける（<a href="#s-cook">手順</a>）。決着と同時にごはんにできる</dd></div>
+<div class="row"><dt>長引いたら</dt><dd>19:30を過ぎたら、以降のレベルは6分にして早く決着させる</dd></div>
+</dl>
+<p class="fine">賞品や賭け金は決めていない。やるなら、始める前にその場で決める。</p>
+</section>
+
+<section class="panel soft" id="p-blinds" aria-labelledby="h-p-blinds">
+<h3 class="title" id="h-p-blinds">ブラインド表</h3>
+<p class="fine">17:30に始めた場合の目安。始まりが遅れたら、その分ずらす。</p>
+<table class="blinds">
+<thead><tr><th>Lv</th><th>SB / BB</th><th>開始</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>50 / 100</td><td>17:30</td></tr>
+<tr><td>2</td><td>75 / 150</td><td>17:42</td></tr>
+<tr><td>3</td><td>100 / 200</td><td>17:54</td></tr>
+<tr><td>4</td><td>150 / 300</td><td>18:06</td></tr>
+<tr><td>5</td><td>200 / 400</td><td>18:18</td></tr>
+<tr><td>6</td><td>300 / 600</td><td>18:30</td></tr>
+<tr><td>7</td><td>400 / 800</td><td>18:42</td></tr>
+<tr><td>8</td><td>600 / 1,200</td><td>18:54</td></tr>
+<tr><td>9</td><td>800 / 1,600</td><td>19:06</td></tr>
+<tr><td>10</td><td>1,000 / 2,000</td><td>19:18</td></tr>
+<tr class="turbo"><td>11</td><td>1,500 / 3,000</td><td>19:30</td></tr>
+<tr class="turbo"><td>12</td><td>2,000 / 4,000</td><td>19:36</td></tr>
+<tr class="turbo"><td>13</td><td>3,000 / 6,000</td><td>19:42</td></tr>
+</tbody>
+</table>
+<p class="fine">レベル1〜10は12分、色のついたレベル11以降は6分。全員の点を合わせても70,000点なので、レベル10〜12のあたりで決着する計算。</p>
+</section>
+
+<section class="panel" id="p-ring" aria-labelledby="h-p-ring">
+<h3 class="title" id="h-p-ring">後半：リングゲーム</h3>
+<dl class="rows">
+<div class="row"><dt>開始</dt><dd>21:00ごろ。鍋の片付けが終わったら</dd></div>
+<div class="row"><dt>ルール</dt><dd>いつもどおり</dd></div>
+<div class="row"><dt>終わり</dt><dd>決めない。寝たい人から抜ける</dd></div>
+</dl>
 </section>
 </div>
 </main>
